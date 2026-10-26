@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para maria ❤️</title>
+
+<style>
+:root {
+    --fondo: #f3d9d2;
+    --rosa-claro: #f8d8df;
+    --rosa: #df5679;
+    --rojo: #c93659;
+    --rojo-oscuro: #982844;
+    --texto: #76263d;
+    --papel: #fff2e8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--texto);
+    background: var(--fondo);
+}
+
+/* ENCABEZADO */
+
+header {
+    text-align: center;
+    padding: 22px 12px;
+    color: white;
+    background: #e99ab1;
+    border-bottom: 3px solid #f7c9d6;
+    box-shadow: 0 5px 18px #79415320;
+}
+
+header .detalle {
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: normal;
+    margin: 0;
+}
+
+header p {
+    margin: 9px 0 0;
+    font-size: 18px;
+}
+
+/* CONTENIDO GENERAL */
+
+main {
+    width: min(1150px, 95%);
+    margin: auto;
+    padding: 30px 0 45px;
+    text-align: center;
+}
+
+.decoracion {
+    font-size: 22px;
+    letter-spacing: 8px;
+    margin: 20px 0;
+}
+
+.inicio h2 {
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: normal;
+    margin: 0 0 10px;
+    color: #874457;
+}
+
+.inicio p {
+    font-size: 16px;
+}
+
+/* SOBRE CERRADO */
+
+.envoltura {
+    display: flex;
+    justify-content: center;
+    padding: 28px 0 15px;
+    perspective: 1000px;
+}
+
+.sobre {
+    position: relative;
+    width: min(390px, 88vw);
+    height: 235px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    filter: drop-shadow(0 12px 12px #64324130);
+    transition: transform .3s;
+}
+
+.sobre:hover {
+    transform: translateY(-4px);
+}
+
+.sobre-fondo {
+    position: absolute;
+    inset: 0;
+    background: #d65378;
+    border: 1px solid #bf4266;
+    border-radius: 13px 13px 20px 20px;
+}
+
+.sobre-papel {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 8%;
+    height: 82%;
+    background: #f9dce2;
+    border-radius: 8px;
+}
+
+.sobre-frente {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #e97897, #c9476c);
+    border-radius: 13px 13px 20px 20px;
+    clip-path: polygon(
+        0 36%, 50% 72%, 100% 36%,
+        100% 100%, 0 100%
+    );
+    z-index: 2;
+}
+
+.sobre-tapa {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(145deg, #f3b4c5, #dc7895);
+    clip-path: polygon(
+        0 0, 100% 0, 100% 36%,
+        50% 72%, 0 36%
+    );
+    border-radius: 13px 13px 0 0;
+    z-index: 3;
+    transform-origin: top;
+    transition: transform .8s ease;
+}
+
+.sobre-texto {
+    position: absolute;
+    z-index: 4;
+    top: 24%;
+    left: 5%;
+    right: 5%;
+    color: #874457;
+    font-size: 21px;
+    font-style: italic;
+}
+
+.sello {
+    position: absolute;
+    z-index: 4;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #a92248;
+    border: 2px solid #f9d0db;
+    font-size: 29px;
+    box-shadow: 0 4px 10px #641e3230;
+    transition: opacity .3s;
+}
+
+.sobre.abierto .sobre-tapa {
+    transform: rotateX(180deg);
+}
+
+.sobre.abierto .sello {
+    opacity: 0;
+}
+
+.instruccion {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* SECCIÓN DE LA CARTA */
+
+.carta-seccion {
+    display: none;
+    animation: aparecer .7s ease;
+}
+
+.carta-seccion.visible {
+    display: block;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.boton-volver {
+    display: block;
+    margin: 0 auto 25px;
+    padding: 12px 22px;
+    border: 1px solid #d47b96;
+    border-radius: 30px;
+    background: #fff0f3;
+    color: #994a65;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.boton-volver:hover {
+    background: #f8cbd7;
+}
+
+/* DISTRIBUCIÓN: PAPELITOS A LOS LADOS */
+
+.distribucion {
+    display: grid;
+    grid-template-columns: minmax(145px, 190px) minmax(0, 600px) minmax(145px, 190px);
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.lado-papelitos {
+    display: flex;
+    flex-direction: column;
+    gap: 19px;
+    align-items: center;
+}
+
+/* MINI PAPELITOS */
+
+.papelito {
+    position: relative;
+    width: 100%;
+    padding: 19px 13px;
+    min-height: 120px;
+    background: #fff0d9;
+    border: 1px solid #e6c59f;
+    border-radius: 5px 18px 5px 15px;
+    box-shadow: 0 7px 13px #713b4018;
+    transform: rotate(-2deg);
+    transition: transform .25s, box-shadow .25s;
+}
+
+.papelito:nth-child(even) {
+    transform: rotate(2deg);
+    background: #ffe4e8;
+    border-color: #edb4c2;
+}
+
+.papelito:hover {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: 0 10px 18px #713b4025;
+}
+
+.papelito .numero {
+    display: block;
+    color: #c43f63;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.papelito h3 {
+    font-size: 17px;
+    font-weight: normal;
+    margin: 0 0 8px;
+    color: #9d304f;
+}
+
+.papelito p {
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.papelito .corazoncito {
+    display: block;
+    margin-top: 9px;
+    font-size: 17px;
+}
+
+/* CARTA PRINCIPAL */
+
+.carta {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+    padding: clamp(25px, 5vw, 45px);
+    background: linear-gradient(145deg, #dc4c6b, #c72e52);
+    border: 2px solid #b92749;
+    border-radius: 42px;
+    box-shadow:
+        0 16px 30px #8d25402b,
+        inset 0 0 18px #ffb1c322;
+    transform: rotate(-.3deg);
+    color: #fff3f5;
+}
+
+.carta::before {
+    content: "♥";
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-size: 23px;
+    color: #ffc3d1;
+    opacity: .8;
+}
+
+.carta h2 {
+    text-align: center;
+    color: #fff1f5;
+    font-size: 29px;
+    font-weight: normal;
+    margin: 0 0 25px;
+}
+
+.texto-carta {
+    min-height: 200px;
+    padding: 0 5px;
+    font-size: 17px;
+    line-height: 2;
+    color: #fff4f5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    outline: none;
+}
+
+.firma {
+    text-align: right;
+    font-style: italic;
+    color: #ffe4eb;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* REGALITO SORPRESA */
+.regalo-sorpresa {
+    text-align: center;
+    margin: 40px auto 20px;
+    padding: 20px;
+}
+
+.boton-regalo {
+    background: transparent;
+    border: none;
+    font-size: 65px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: latidoRegalo 1.5s infinite;
+}
+
+.boton-regalo:hover {
+    transform: scale(1.2) rotate(-8deg);
+}
+
+.texto-regalo {
+    color: #a83250;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+.imagen-regalo {
+    display: none;
+    max-width: 320px;
+    width: 100%;
+    margin: 20px auto 0;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px #8f294533;
+    animation: aparecerRegalo 0.6s ease;
+}
+
+.imagen-regalo.visible {
+    display: block;
+}
+
+@keyframes latidoRegalo {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes aparecerRegalo {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.oculto {
+    display: none !important;
+}
+
+/* DISEÑO PARA TABLET Y MÓVIL */
+
+@media (max-width: 850px) {
+    .distribucion {
+        grid-template-columns: minmax(0, 600px);
+        gap: 22px;
+    }
+
+    .carta {
+        grid-row: 1;
+    }
+
+    .lado-papelitos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+    }
+
+    .papelito {
+        min-height: 125px;
+    }
+
+    .lado-izquierdo {
+        grid-row: 2;
+    }
+
+    .lado-derecho {
+        grid-row: 3;
+    }
+}
+
+@media (max-width: 420px) {
+    .sobre {
+        height: 205px;
+    }
+
+    .carta {
+        padding: 27px 20px;
+        border-radius: 32px;
+    }
+
+    .texto-carta {
+        font-size: 16px;
+    }
+
+    .papelito {
+        padding: 15px 10px;
+    }
+
+    .papelito h3 {
+        font-size: 15px;
+    }
+
+    .papelito p {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="detalle"><h1>esto es para ti mi malandra😘</h1></div>
+    <h3>Fue hecho con mucho amor y cariño</h3>
+    <p>no te burles. (es opcional)</p>
+</header>
+
+<main>
+
+    <section class="inicio" id="inicio">
+
+        <div class="decoracion">💕💕💕💕</div>
+
+        <h2>para ti prinsesa hermosa ♥</h2>
+
+        <p>con mucho cariño atentamente el amor de tu vida.</p>
+
+        <div class="envoltura">
+
+            <button class="sobre" id="sobre" aria-label="Abrir carta">
+
+                <span class="sobre-fondo"></span>
+                <span class="sobre-papel"></span>
+
+                <span class="sobre-texto">
+                  para maria😘❤️
+                </span>
+
+                <span class="sobre-frente"></span>
+                <span class="sobre-tapa"></span>
+
+                <span class="sello">❤️</span>
+
+            </button>
+
+        </div>
+
+        <p class="instruccion">
+            I LOVE YOU 💌
+        </p>
+
+        <div class="decoracion">😘🌷😘</div>
+
+    </section>
+
+    <section class="carta-seccion" id="cartaSeccion">
+
+        <button class="boton-volver" id="volver">
+            ← Volver atrás
+        </button>
+
+        <div class="distribucion">
+
+            <aside class="lado-papelitos lado-izquierdo">
+
+                <article class="papelito">
+                    <span class="numero"><h3>lo que quiero contigo</h3></span>
+                    <p contenteditable="true" spellcheck="true">casarme</p>
+                    <p contenteditable="true" spellcheck="true">llegar a viejo contigo</p>
+                    <p contenteditable="true" spellcheck="true">tener 45 hijos contigo</p>
+                    <p contenteditable="true" spellcheck="true">despertar todos los dias abrazandote</p>
+                <p contenteditable="true" spellcheck="true">y quiero que que seas mi ayuda idonea bb😘</p>
+                    <p contenteditable="true" spellcheck="true">y hacerte la mujer mas feliz del mundo</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+                <article class="papelito">
+                    <span class="numero"><h3>que me gusta de ti</h3></span>
+                    <p contenteditable="true" spellcheck="true">Me gusta el cariño que das aunque duela pero aun asi me encanta y quiero que guardes ese cariño solo para mi 🤨 .</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+                <article class="papelito">
+                    <span class="numero"><h3>detalle.1</h3></span>
+                    
+                    <p contenteditable="true" spellcheck="true">queria dar mas detalles a la pagina con fotos nuestras pero lamentablemente no tengo, asi que te conformas🤨.</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+                <article class="papelito">
+                    <span class="numero">algo que deves saber</span>
+
+                    <p contenteditable="true" spellcheck="true">Asi que cuando estemos juntos precurare tirarme muchas fotos contigo y no te podras negar y quiero que no te quejes 🤨.</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+            </aside>
+
+            <!-- CARTA PRINCIPAL -->
+
+            <article class="carta">
+
+                <h2>para el amor de mi vida:maria 💕💕</h2>
+
+                <div class="texto-carta" id="textoCarta" contenteditable="true" spellcheck="true">💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋
+
+Bueno En verdad esta es mi primera carta o la primera que escribo con dedicacion y para alguien que me gusta, y no tenía ni idea de por dónde empezar. Al principio quería hacerte una carta física, osea, con lápiz y papel, pero no me salió bien. A veces me salía chueca aveses desorganizada o fea y aveses cueca,desorganizada, y fea , y me extresé mucho. Así que se me dio la idea de hacértela en digital y así hise esto pero sé que lo entenderías. Así que esta es mi primera carta para ti.
+
+primeramente quiero decirte que eres muy especial para mí. No he sentido esto por nadie más. Para serte sincero, antes de conocerte o cuando empezamos a conocernos, no quería nada serio contigo, solo quería pasar el rato y no me gustabas, pero cuando empecé a conocerte me di cuenta de lo especial y la maravillosa mujer que eres . me enpeso a gustar todo de ti lo unico que odiava era la despedida Empecé a enamorarme, y me di cuenta de lo Exclusiva y unica que eres, de tantas chicas y mujeres que e visto ninguna son como tu y desde ahi no quise perder esa oportunidad asi que después de ahí solo te quería para mí, y Sé que suena egoísta y no sería lo correcto, pero quiero que tus abrazos, tus besos, tus cariños, y tus locuras sean solo conmigo y para mí.
+
+asi que, solo quiero que sepas que me encantas, te quiero y que quiero mi futuro contigo; mis momentos malos, mis momentos buenos, osea todos mis momentos contigo.
+
+y sé que no tengo mucho para darte, que no soy la gran cosa, pero todo mi cariño y amor te lo puedo dar y conmigo una sonrisa no te va a faltar.
+
+Y bueno, aún hay muchas cosas que te quiero decir y que quiero que sepas, pero no quiero que esta carta sea demasiado larga para no aburrirte,en ves de escrivirtelo mejor te lo demostrare así que por ahora solo te diré que "te amo". ❤️❤️</div>
+
+                <div class="firma">
+                    atentamente un loco enamorado ❤️
+                </div>
+
+            </article>
+
+            <aside class="lado-papelitos lado-derecho">
+
+                <article class="papelito">
+                    <span class="numero"><h3>que me encanta de ti</h3></span>
+                    <p contenteditable="true" spellcheck="true">
+en este papelito no cabe todo lo que me encanta de ti asi que solo escribire que me encanta tu personalidad y tu loquera😍.</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+                <article class="papelito">
+                    <span class="numero"><h3>algo de lo que me arepiento</h3></span>
+                    
+                    <p contenteditable="true" spellcheck="true">no averte conocido antes presiosa y no aprovechar al maximo cuando estuvimos juntos🥺🥺.
+
+♡
+</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+                <article class="papelito">
+                    <span class="numero"><h3>detalles.2</h3></span>
+                   
+                    <p contenteditable="true" spellcheck="true">y pense en mandarle fotos tuyas y mia a chatGPT para que nos ponga juntos pero por miedo a que se enamore de ti no lo hice.
+</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+                <article class="papelito">
+                    <span class="numero">algo inportante</span>
+                    <h3>para que sepas</h3>
+                    <p contenteditable="true" spellcheck="true">esto es por si encuentras fartas ortograficas asi que me disculpo pero es una prueba de que la hice a mano y no fue ninguna intelijencia artificial</p>
+                    <span class="corazoncito">♡</span>
+                </article>
+
+            </aside>
+
+        </div>
+
+        <!-- SECCIÓN DEL REGALITO -->
+        <div class="regalo-sorpresa">
+            <button class="boton-regalo" id="botonRegalo" onclick="mostrarRegalo()" aria-expanded="false">
+                🎁
+            </button>
+            <div class="texto-regalo" id="textoRegalo">
+                para ti bb🥹🥹😘💗
+            </div>
+            <img src="Gemini_Generated_Image_bthzwibthzwibthz.jpg" alt="Regalo para ti" class="imagen-regalo" id="imagenRegalo">
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+const sobre = document.getElementById("sobre");
+const inicio = document.getElementById("inicio");
+const cartaSeccion = document.getElementById("cartaSeccion");
+const volver = document.getElementById("volver");
+
+let abriendo = false;
+
+/* MOSTRAR U OCULTAR EL REGALO */
+function mostrarRegalo() {
+    const imagen = document.getElementById("imagenRegalo");
+    const boton = document.getElementById("botonRegalo");
+    const texto = document.getElementById("textoRegalo");
+
+    const mostrar = !imagen.classList.contains("visible");
+
+    imagen.classList.toggle("visible", mostrar);
+    boton.setAttribute("aria-expanded", String(mostrar));
+
+    texto.textContent = mostrar
+        ? "una flor para la flor mas hermosa😍🌹❤️"
+        : "para ti bb 💗";
+}
+
+/* ABRIR EL SOBRE */
+sobre.addEventListener("click", function () {
+
+    if (abriendo || sobre.classList.contains("abierto")) {
+        return;
+    }
+
+    abriendo = true;
+    sobre.classList.add("abierto");
+
+    setTimeout(function () {
+
+        inicio.classList.add("oculto");
+        cartaSeccion.classList.add("visible");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        abriendo = false;
+
+    }, 500);
+
+});
+
+/* VOLVER A LA PORTADA */
+volver.addEventListener("click", function () {
+
+    cartaSeccion.classList.remove("visible");
+    inicio.classList.remove("oculto");
+    sobre.classList.remove("abierto");
+
+    // Ocultar la imagen si estaba visible al volver
+    const imagen = document.getElementById("imagenRegalo");
+    if (imagen && imagen.classList.contains("visible")) {
+        mostrarRegalo();
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+</script>
+
+</body>
+</html>
